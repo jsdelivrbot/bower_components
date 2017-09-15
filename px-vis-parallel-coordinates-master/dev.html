@@ -1,0 +1,323 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      px-vis-parallel-coordinates Demo</title>
+    <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
+    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <link rel="import" href="../px-theme/px-theme-styles.html">
+    <!-- <link rel="import" href="../px-dark-theme/px-dark-theme-styles.html"> -->
+
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
+    <link rel="import" href="../iron-ajax/iron-ajax.html"/>
+
+    <link rel="import" href="../px-vis/px-vis-chart-navigator.html" />
+    <link rel="import" href="../px-rangepicker/px-rangepicker.html" />
+    <link rel="import" href="px-vis-parallel-coordinates.html" />
+  </head>
+
+  <!-- <body style="padding:30px; background-color: rgb(27,42,51);"> -->
+  <body>
+
+    <h3>Parallel Coordinates</h3>
+    <template is="dom-bind">
+      <h3>Parallel Coordinates linked with a rangepicker and navigator</h3>
+      <px-rangepicker
+        id="rangepicker"
+        range="{{range}}"
+        date-format="YYYY/MM/DD"
+        time-format="hh:mm:ss A"
+        show-buttons="true"
+        show-time-zone="text">
+      </px-rangepicker>
+      <br />
+      <span>Open new tab with snapshot of parallel chart with its navigator</span>
+      <button id="btnSnap">Smile!</button>
+      <br />
+      <br />
+      <br />
+      <px-vis-parallel-coordinates
+        id="parall"
+        width="1300"
+        height="500"
+        show-tooltip
+        chart-data="[[chartData]]"
+        skip-keys='{"UnitNumber":true,"DLN_MODE":true}'
+        series-key="TimeStamp"
+        match-ticks
+        selected-domain="{{selectedDomain}}"
+        generate-axes-from-data
+        tooltip-config='{
+          "forceDateTimeDisplay": true,
+          "tooltipStyle": "light"
+        }'
+        series-config='{
+            "TTXD1_1":{
+              "yAxisUnit": "Hz",
+              "title": "verylongname"
+            },
+            "TTXD1_12":{
+              "yAxisUnit": "F",
+              "title": "stout"
+            }
+          }'
+      ></px-vis-parallel-coordinates>
+      <div style="height:100px">
+        <px-vis-chart-navigator
+            id="navigator"
+            prevent-resize
+            width="1280"
+            height="100"
+            x-axis-type="time"
+            y-axis-type="linear"
+            range="[[range]]"
+            margin='{
+              "top": 5,
+              "right": 10,
+              "bottom": 20,
+              "left": 10
+            }'
+            chart-extents='{
+                            "x":["dynamic","dynamic"],
+                            "y":["dynamic","dynamic"]
+                          }'
+            chart-data="[[chartData]]"
+            series-config='{
+              "TTXD1_1":{
+                "type": "line",
+                "name": "TTXD1_1",
+                "x":"TimeStamp",
+                "y":"TTXD1_1"
+              }
+            }'
+            selected-domain="{{selectedDomain}}"
+            gradient-overlay>
+          </px-vis-chart-navigator>
+        </div>
+
+
+        <br />
+        <br />
+        <br />
+        <h3>Parallel Coordinates demonstrating responsive behavior</h3>
+        <button id="btnInc">Increase wrapper width</button>
+        <button id="btnDec">Decrease wrapper width</button>
+        <button id="btnIH">Increase wrapper height</button>
+        <button id="btnDH">Decrease wrapper height</button>
+        <br />
+        <br />
+        <br />
+        <div id="wrap" style="height:300px">
+          <px-vis-parallel-coordinates
+            id="chart"
+            width="1300"
+            height="500"
+            chart-data="[[chartData]]"
+            skip-keys='{"UnitNumber":true,"DLN_MODE":true}'
+            series-key="TimeStamp"
+            match-ticks
+            generate-axes-from-data
+          ></px-vis-parallel-coordinates>
+        </div>
+
+      <br />
+      <br />
+      <br />
+      <h3>Parallel Coordinates with developer specified axes</h3>
+      <px-vis-parallel-coordinates
+        width="1300"
+        height="500"
+        chart-data="[[chartData]]"
+        series-key="TimeStamp"
+        axes='["DWATT", "TTXD1_1", "TTXD1_2", "TTXD1_3", "TTXD1_4", "TTXD1_5", "TTXD1_6", "TTXD1_7", "TTXD1_8", "TTXD1_9", "TTXD1_10", "TTXD1_11", "TTXD1_12", "TTXD1_13",  "TTXD1_14", "TTXD1_15", "TTXD1_16", "TTXD1_17", "TTXD1_18", "TTXD1_19", "TTXD1_20", "TTXD1_21", "TTXD1_22", "TTXD1_23", "TTXD1_24", "TTXD1_25", "TTXD1_26",  "TTXD1_27", "TTXD1_28", "TTXD1_29", "TTXD1_30", "TTXD1_31"]'
+        match-ticks
+      ></px-vis-parallel-coordinates>
+
+      <br />
+      <br />
+      <br />
+      <h3>Parallel Coordinates with a category specified to color the lines</h3>
+      <px-vis-parallel-coordinates
+        width="1300"
+        height="500"
+        chart-data="[[chartData]]"
+        skip-keys='{"UnitNumber":true}'
+        series-key="TimeStamp"
+        category-key="DLN_MODE"
+        categories='[1, 2, 3, 4]'
+        tooltip-config='{ "forceDateTimeDisplay" : true}'
+        match-ticks
+        generate-axes-from-data
+      ></px-vis-parallel-coordinates>
+
+      <br />
+      <br />
+      <br />
+      <h3>Parallel Coordinates with generated axes and developer specified keys to skip</h3>
+      <px-vis-parallel-coordinates
+        width="1300"
+        height="500"
+        chart-data="[[chartData]]"
+        skip-keys='{"UnitNumber":true,"DLN_MODE":true,"DWATT":true,"TTXD1_31":true,"TTXD1_30":true,"TTXD1_29":true,"TTXD1_28":true,"TTXD1_27":true,"TTXD1_26":true,"TTXD1_25":true,"TTXD1_24":true,"TTXD1_23":true,"TTXD1_22":true,"TTXD1_21":true}'
+        series-key="TimeStamp"
+        match-ticks
+        generate-axes-from-data
+      ></px-vis-parallel-coordinates>
+
+      <br />
+      <br />
+      <br />
+      <h3>Parallel Coordinates with developer specified axes</h3>
+      <px-vis-parallel-coordinates
+        width="1300"
+        height="500"
+        chart-data='[]'
+        axes='[]'
+        series-key="TimeStamp"
+        match-ticks
+      ></px-vis-parallel-coordinates>
+
+      <br />
+      <br />
+      <br />
+      <h3>Parallel Coordinates with a common axes</h3>
+      <px-vis-parallel-coordinates
+        width="1300"
+        height="500"
+        chart-data="[[chartData]]"
+        skip-keys='{"UnitNumber":true,"DLN_MODE":true}'
+        series-key="TimeStamp"
+        match-ticks
+        common-axis
+        generate-axes-from-data
+      ></px-vis-parallel-coordinates>
+
+      <br />
+      <br />
+      <br />
+      <h3>Parallel Coordinates with match ticks off</h3>
+      <px-vis-parallel-coordinates
+        width="1300"
+        height="500"
+        chart-data="[[chartData]]"
+        skip-keys='{"TimeStamp":true}'
+        series-key="TimeStamp"
+        axes='["TTXD1_1", "TTXD1_2", "TTXD1_3", "TTXD1_4", "TTXD1_5"]'
+      ></px-vis-parallel-coordinates>
+
+      <iron-ajax
+        url="../px-demo-data/demo-data/apm/timeseries_demo.json"
+        handle-as="json"
+        auto
+        last-response="{{chartData}}">
+      </iron-ajax>
+
+    </template>
+  </body>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      var btnInc = document.getElementById('btnInc'),
+          btnDec = document.getElementById('btnDec'),
+          btnIH = document.getElementById('btnIH'),
+          btnDH = document.getElementById('btnDH'),
+          wrap = document.getElementById('wrap'),
+          chart = document.getElementById('chart'),
+          rangepicker = document.getElementById('rangepicker'),
+          btnSnap = document.getElementById('btnSnap'),
+          parall = document.getElementById('parall'),
+          navigator = document.getElementById('navigator');
+
+      rangepicker.range = {"from":"2016-06-22T15:08:00Z","to":"2016-06-22T20:08:00.000Z"};
+
+      var menuConfig = [
+          {
+            "name": "Delete",
+            "eventName": "delete",
+            "actionContext": parall,
+            "icon": "fa-trash",
+            "action": function(itemConfig, additionalDetail) {
+              var newAxes = this.axes;
+              newAxes.splice(newAxes.indexOf(additionalDetail.name),1);
+              this.set("axes", []);
+              this.set("axes", newAxes);
+            }
+          }
+        ]
+
+      parall.set('dynamicMenuConfig', menuConfig);
+
+      btnSnap.addEventListener('click', function() {
+
+        //fetch svg+canvas from chart and svg
+        //from navigator and render them on a canvas
+        var canvas = document.createElement('canvas'),
+                context,
+                chartCanvasContext = parall.canvasContext,
+                svgChart = parall.pxSvgElem,
+                svgNavigator = navigator.pxSvgElem,
+                count = 0;
+
+        canvas.width = Math.max(chartCanvasContext.canvas.width, navigator.width);
+        canvas.height = chartCanvasContext.canvas.height + navigator.height;
+        context = canvas.getContext('2d');
+
+        //render chart canvas
+        context.drawImage(chartCanvasContext.canvas, 0, 0);
+
+        //to be called when svg is done drawing
+        var callback = function(res) {
+          if(count === 0) {
+            //first svg has rendered, wait for second one
+            count++;
+          } else {
+
+            //everything done
+            window.open().location = res.toDataURL("image/png");
+          }
+        }
+
+        //render chart svg and navigator svg
+        parall._drawSVGOnCanvas(canvas, callback);
+        navigator._drawSVGOnCanvas(canvas, callback, 0, parall.height);
+      });
+
+      btnInc.addEventListener('click', function() {
+        var width = window.getComputedStyle(wrap).getPropertyValue("width");
+        var cur = width.substr(0, width.length-2);
+        wrap.style['width'] = Number(cur) + 150 + 'px';
+        chart.notifyResize();
+      });
+
+      btnDec.addEventListener('click', function() {
+        var width = window.getComputedStyle(wrap).getPropertyValue("width");
+        var cur = width.substr(0, width.length-2);
+        wrap.style['width'] = Number(cur) - 150 + 'px';
+        chart.notifyResize();
+      });
+
+      btnIH.addEventListener('click', function() {
+
+        var width = window.getComputedStyle(wrap).getPropertyValue("height");
+        var cur = width.substr(0, width.length-2);
+        wrap.style['height'] = Number(cur) + 150 + 'px';
+        chart.notifyResize();
+      });
+
+      btnDH.addEventListener('click', function() {
+        var width = window.getComputedStyle(wrap).getPropertyValue("height");
+        var cur = width.substr(0, width.length-2);
+        wrap.style['height'] = Number(cur) - 150 + 'px';
+        chart.notifyResize();
+      });
+
+    });
+  </script>
+
+</html>

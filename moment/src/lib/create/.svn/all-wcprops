@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create
+END
+from-object.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/from-object.js
+END
+from-string.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/from-string.js
+END
+date-from-array.js
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/date-from-array.js
+END
+local.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/local.js
+END
+utc.js
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/utc.js
+END
+from-string-and-format.js
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/from-string-and-format.js
+END
+parsing-flags.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/parsing-flags.js
+END
+check-overflow.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/check-overflow.js
+END
+from-array.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/from-array.js
+END
+valid.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/valid.js
+END
+from-anything.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/from-anything.js
+END
+from-string-and-array.js
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/create/from-string-and-array.js
+END

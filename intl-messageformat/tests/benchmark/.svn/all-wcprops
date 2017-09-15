@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/benchmark
+END
+new_string_msg.js
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/benchmark/new_string_msg.js
+END
+new_complex_msg.js
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/benchmark/new_complex_msg.js
+END
+format_cached_string_msg.js
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/benchmark/format_cached_string_msg.js
+END
+new_complex_msg_preparsed.js
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/benchmark/new_complex_msg_preparsed.js
+END
+format_cached_complex_msg.js
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/benchmark/format_cached_complex_msg.js
+END

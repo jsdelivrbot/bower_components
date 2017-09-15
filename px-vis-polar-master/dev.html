@@ -1,0 +1,245 @@
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      px-vis-polar Demo</title>
+    <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
+    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+    <link rel="import" href="../px-theme/px-theme-styles.html">
+    <!-- <link rel="import" href="../px-dark-theme/px-dark-theme-styles.html"> -->
+    <style include="px-theme-styles" is="custom-style"></style>
+
+    <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
+    <link rel="import" href="px-vis-polar.html" />
+    <link rel="import" href="../iron-ajax/iron-ajax.html" />
+    <link rel="import" href="../px-vis/px-vis-chart-navigator.html"/>
+  </head>
+
+  <!-- <body style="padding:30px; background-color: rgb(27,42,51);"> -->
+  <body>
+
+    <template id="demo" is="dom-bind">
+      <h3>Demo</h3>
+      <iron-ajax
+             url="../px-demo-data/demo-data/apm/polar.json"
+             handle-as="json"
+             last-response="{{data}}" auto></iron-ajax>
+      <span>Open new tab with snapshot of parallel chart with its navigator</span>
+      <button id="btnSnap">Smile!</button>
+      <button id="btnInc">Increase wrapper width</button>
+      <button id="btnDec">Decrease wrapper width</button>
+      <button id="btnIH">Increase wrapper height</button>
+      <button id="btnDH">Decrease wrapper height</button>
+      <div id="wrap" style="height:500px; border:1px solid black">
+          <px-vis-polar
+            id="chart"
+            chart-data="{{data}}"
+            register-config='{
+                "type": "horizontal",
+                "numberFormat": "0,0.0",
+                "forceDateTimeDisplay": true}'
+            tooltip-config='{
+                "numberFormat": "0,0.0",
+                "forceDateTimeDisplay": true}'
+            series-config='{
+                "firstSerie": {
+                "type": "line",
+                "name": "Data",
+                "yAxisUnit": "m/s",
+                "y": "AVD-CHART-ASSET-CHILD03-ID.BR1X_1XAMP_ID",
+                "x":"AVD-CHART-ASSET-CHILD03-ID.BR1X_1XPH_ID"
+                }
+            }'
+
+            render-to-canvas
+            time-data="x"
+            time-domain="[[selectedDomain]]"
+            use-degrees>
+            </px-vis-polar>
+        </div>
+        <div style="height:100px">
+          <px-vis-chart-navigator
+              id="navigatoor"
+              x-axis-type="time"
+              y-axis-type="linear"
+              margin='{
+              "top": 5,
+              "right": 5,
+              "bottom": 20,
+              "left": 5
+              }'
+              chart-data="[[data]]"
+              series-config='{
+                  "firstSerie": {
+                  "type": "line",
+                  "name": "Data",
+                  "y": "AVD-CHART-ASSET-CHILD03-ID.BR1X_1XAMP_ID",
+                  "x":"x"
+                  }
+              }'
+              selected-domain="{{selectedDomain}}">
+          </px-vis-chart-navigator>
+        </div>
+        <!--<div style="height:500px; border:1px solid black">
+          <px-vis-polar
+            id="chart2"
+            chart-data="{{data}}"
+            register-config='{
+                "type": "vertical",
+                "numberFormat": "0,0.0",
+                "forceDateTimeDisplay": true}'
+            tooltip-config='{
+                "numberFormat": "0,0.0",
+                "forceDateTimeDisplay": true}'
+            series-config='{
+                "firstSerie": {
+                "type": "line",
+                "name": "Data",
+                "yAxisUnit": "m/s",
+                "y": "AVD-CHART-ASSET-CHILD03-ID.BR1X_1XAMP_ID",
+                "x":"AVD-CHART-ASSET-CHILD03-ID.BR1X_1XPH_ID"
+                }
+            }'
+            show-tooltip
+            time-data="x"
+            time-domain="[[selectedDomain]]"
+            use-degrees
+            >
+            </px-vis-polar>
+        </div>
+        <div style="height:100px">
+            <px-vis-chart-navigator
+                id="navigatoor"
+                x-axis-type="time"
+                y-axis-type="linear"
+                margin='{
+                "top": 5,
+                "right": 5,
+                "bottom": 20,
+                "left": 5
+                }'
+                chart-data="[[data]]"
+                series-config='{
+                    "firstSerie": {
+                    "type": "line",
+                    "name": "Data",
+                    "y": "AVD-CHART-ASSET-CHILD03-ID.BR1X_1XAMP_ID",
+                    "x":"x"
+                    }
+                }'
+                selected-domain="{{selectedDomain}}">
+            </px-vis-chart-navigator>
+          </div>-->
+    </template>
+  </body>
+  <script>
+    document.addEventListener('WebComponentsReady', function() {
+      var chart = document.getElementById('chart'),
+          xConfigText = document.getElementById('xConfig'),
+          yConfigText = document.getElementById('yConfig'),
+          btnInc = document.getElementById('btnInc'),
+          btnDec = document.getElementById('btnDec'),
+          btnIH = document.getElementById('btnIH'),
+          btnDH = document.getElementById('btnDH'),
+          wrap = document.getElementById('wrap'),
+          chart = document.getElementById('chart'),
+          navigator = document.getElementById('navigatoor');
+
+
+      var menuConfig = [
+          {
+            'name': 'Delete',
+            'action': function(itemConfig, additionalDetail) {
+              var conf = this.seriesConfig;
+              delete conf[additionalDetail.name];
+              this.set('seriesConfig', {});
+              this.set('seriesConfig', conf);
+            },
+            'actionContext': chart,
+            'eventName': 'delete',
+            'icon': 'fa-trash',
+          },
+          {
+            'name': 'Bring To Front',
+            'action': function(itemConfig, additionalDetail) {
+              this.set('serieToRedrawOnTop', additionalDetail.name);
+            },
+            'actionContext': chart,
+            'eventName': 'bring-to-front',
+            'icon': 'fa-arrow-up'
+          }
+        ];
+
+        chart.set('dynamicMenuConfig', menuConfig);
+
+      btnSnap.addEventListener('click', function() {
+
+        //fetch svg+canvas from chart and svg
+        //from navigator and render them on a canvas
+        var canvas = document.createElement('canvas'),
+                context,
+                chartCanvasContext = chart.canvasContext,
+                svgChart = chart.pxSvgElem,
+                svgNavigator = navigator.pxSvgElem,
+                count = 0;
+
+        canvas.width = Math.max(chart.width, navigator.width);
+        canvas.height = chart.height + navigator.height;
+        context = canvas.getContext('2d');
+        //render chart canvas
+     //   context.drawImage(chartCanvasContext.canvas, 0, 0);
+
+        //to be called when svg is done drawing
+        var callback = function(res) {
+          if(count === 0) {
+            //first svg has rendered, wait for second one
+            count++;
+          } else {
+
+            //everything done
+            window.open().location = res.toDataURL("image/png");
+          }
+        }
+
+        //render chart svg and navigator svg
+        chart._drawSVGOnCanvas(canvas, callback);
+        navigator._drawSVGOnCanvas(canvas, callback, 0, chart.height);
+      });
+
+      btnInc.addEventListener('click', function() {
+        var width = window.getComputedStyle(wrap).getPropertyValue("width");
+        var cur = width.substr(0, width.length-2);
+        wrap.style['width'] = Number(cur) + 25 + 'px';
+        chart.notifyResize();
+      });
+
+      btnDec.addEventListener('click', function() {
+        var width = window.getComputedStyle(wrap).getPropertyValue("width");
+        var cur = width.substr(0, width.length-2);
+        wrap.style['width'] = Number(cur) - 25 + 'px';
+        chart.notifyResize();
+      });
+
+      btnIH.addEventListener('click', function() {
+
+        var width = window.getComputedStyle(wrap).getPropertyValue("height");
+        var cur = width.substr(0, width.length-2);
+        wrap.style['height'] = Number(cur) + 25 + 'px';
+        chart.notifyResize();
+      });
+
+      btnDH.addEventListener('click', function() {
+        var width = window.getComputedStyle(wrap).getPropertyValue("height");
+        var cur = width.substr(0, width.length-2);
+        wrap.style['height'] = Number(cur) - 25 + 'px';
+        chart.notifyResize();
+      });
+    });
+  </script>
+
+</html>

@@ -1,0 +1,45 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+ // Settings
+
+ // Tools
+
+ // Generic
+ @import "px-normalize-design/_generic.normalize.scss";
+ @import "px-box-sizing-design/_generic.box-sizing.scss";
+
+ // Base
+
+ // Meta
+
+ // Objects
+
+ // Component
+
+.bar {
+  shape-rendering: crispEdges;
+}
+.px-simple-win-loss-chart-svg {
+  background: var(--px-win-loss-background-color, white);
+  margin: 0;
+}
+.bar-chart-bottom-line {
+    stroke: var(--px-win-loss-border-color, black);
+    stroke-width: 1;
+}
+.px-positive-fill {
+    fill: var(--px-win-loss-positive-fill-color, green);
+}
+.px-negative-fill {
+    fill: var(--px-win-loss-negative-fill-color, red);
+}
+
+// Trumps

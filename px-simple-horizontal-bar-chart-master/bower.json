@@ -1,0 +1,35 @@
+{
+  "name": "px-simple-horizontal-bar-chart",
+  "version": "1.0.0",
+  "main": [
+    "px-simple-horizontal-bar-chart.html"
+  ],
+  "ignore": [
+    "*.enc",
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "sass",
+    "*.md",
+    "scripts",
+    ".github",
+    "gulpfile.js",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "*.png",
+    "npm-debug.log"
+  ],
+  "dependencies": {
+    "polymer": "^1.7.1",
+    "d3": "^3.0.0",
+    "iron-ajax": "PolymerElements/iron-ajax#~1.4.3",
+    "px-simple-chart-common-behavior": "^2.0.0",
+    "es6-promise": "^3.3.1"
+  },
+  "devDependencies": {
+    "px-theme": "^3.0.0",
+    "px-starter-kit-design": "^1.0.0",
+    "px-demo": "^2.0.0"
+  }
+}

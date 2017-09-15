@@ -1,0 +1,540 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>px-popover Test Suite</title>
+        <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+        <!-- web-component-tester automatically provides local copy of brower.js below
+             for any URL ending with "/web-component-tester/browser.js"
+             when wct is run from the command line -->
+        <script src="../web-component-tester/browser.js"></script>
+        <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
+        <link rel="import" href="../../px-theme/px-theme-styles.html"/>
+        <style include="px-theme-styles" is="custom-style"></style>
+        <link rel="import" href="../px-popover.html"/>
+        <style media="screen">
+            .sample-container {
+                width: 250px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hover-popover {
+                padding: 15px;
+                width: 200px;
+                background-color: black;
+                color: white;
+                text-align: center;
+                vertical-align: middle;
+            }
+            html,body{
+              position:static !important
+            }
+        </style>
+    </head>
+
+    <body>
+        <h3>PX-Popover Test Suite</h3>
+        <p>
+            Although related, examples are /not/ the same as the test fixtures.
+            Tests are tests, examples are examples.
+        </p>
+
+        <p>
+            Also see the <a href="../index.html">documentation</a> and the <a href="../demo.html">UI demo</a>.
+        </p>
+
+        <p>
+            Click button to invoke popover:
+        </p>
+
+        <div class="sample-container">
+            <button id="btnUp" type="button" name="button">Up</button>
+            <px-popover
+                id="testPopoverUp"
+                for="btnUp"
+                orientation="top"
+                popover-title="Top Popover"
+                popover-body="Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod.">
+            </px-popover>
+
+            <button id="btnDown" type="button" name="button">Down</button>
+            <px-popover
+                id="testPopoverDown"
+                for="btnDown"
+                orientation="bottom"
+                popover-title="Bottom Popover"
+                popover-body="Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod.">
+            </px-popover>
+
+            <button id="btnLeft" type="button" name="button">Left</button>
+            <px-popover
+                id="testPopoverLeft"
+                for="btnLeft"
+                orientation="left"
+                popover-title="Left Popover"
+                popover-body="Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod.">
+            </px-popover>
+
+            <button id="btnRight" type="button" name="button">Right</button>
+            <px-popover
+                id="testPopoverRight"
+                for="btnRight"
+                orientation="right"
+                popover-title="Right Popover"
+                popover-body="Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod.">
+            </px-popover>
+        </div>
+        <p></p>
+
+        <div class="sample-container">
+          <div style="position:relative">
+            <button id="btnUpRel" type="button" name="button">Up</button>
+            <px-popover
+                id="testPopoverUpRel"
+                for="btnUpRel"
+                orientation="top"
+                popover-title="Top Popover"
+                popover-body="Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod."
+                position="relative" >
+            </px-popover>
+          </div>
+          <div style="position:relative">
+            <button id="btnDownRel" type="button" name="button">Down</button>
+            <px-popover
+                id="testPopoverDownRel"
+                for="btnDownRel"
+                orientation="bottom"
+                popover-title="Bottom Popover"
+                popover-body="Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod."
+                position="relative" >
+            </px-popover>
+          </div>
+
+            <div style="position:relative">
+            <button id="btnLeftRel" type="button" name="button">Left</button>
+            <px-popover
+                id="testPopoverLeftRel"
+                for="btnLeftRel"
+                orientation="left"
+                popover-title="Left Popover"
+                popover-body="Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod."
+                position="relative" >
+            </px-popover>
+          </div>
+
+            <div style="position:relative">
+            <button id="btnRightRel" type="button" name="button">Right</button>
+            <px-popover
+                id="testPopoverRightRel"
+                for="btnRightRel"
+                orientation="right"
+                popover-title="Right Popover"
+                popover-body="Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod."
+                position="relative" >
+            </px-popover>
+          </div>
+        </div>
+        <p></p>
+
+        <script>
+            suite('<px-popover>', function() {
+                var testPopoverUp = document.getElementById('testPopoverUp');
+
+                test('reflects the "for" property', function() {
+                    assert.equal(testPopoverUp.for, "btnUp");
+                });
+
+                test('reflects the "orientation" property', function() {
+                    assert.equal(testPopoverUp.orientation, "top");
+                });
+
+                test('reflects the "popover-title" property', function() {
+                    assert.equal(testPopoverUp.popoverTitle, "Top Popover");
+                });
+
+                test('reflects the "popover-body" property', function() {
+                    assert.equal(testPopoverUp.popoverBody, "Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod.");
+                });
+
+                test('hides popover before click', function() {
+                    var wrapper = document.querySelector('#testPopoverUp #popoverWrapper');
+                    expect(wrapper.classList.contains('fadeFromHidden')).to.equal(false);
+                });
+
+                test('shows popover after click', function() {
+                    document.querySelector('#btnUp').click();
+                    var wrapper = document.querySelector('#testPopoverUp #popoverWrapper');
+                    expect(wrapper.classList.contains('fadeFromHidden')).to.equal(true);
+                });
+
+                test('popover closes again after click outside', function() {
+                    document.querySelector('#testPopoverUp').click();
+                    var wrapper = document.querySelector('#testPopoverUp #popoverWrapper');
+                    expect(wrapper.classList.contains('fadeFromHidden')).to.equal(false);
+                });
+
+                // test('top popover has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnUp').click();
+                //       var margin = 5;
+                //       var popTop = document.querySelector('#testPopoverUp #popoverWrapper').getBoundingClientRect().bottom;
+                //       var btnTop = document.querySelector('#btnUp').getBoundingClientRect().top - margin;
+                //       assert.closeTo(btnTop, popTop, 1, 'numbers are close');
+                //       document.querySelector('#btnUp').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('top popover has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnUp').click();
+                //       var popTop = document.querySelector('#testPopoverUp #popoverWrapper').getBoundingClientRect().left + document.querySelector('#testPopoverUp #popoverWrapper').getBoundingClientRect().width/2;
+                //       var btnTop = document.querySelector('#btnUp').getBoundingClientRect().left + document.querySelector('#btnUp').getBoundingClientRect().width/2;
+                //       assert.closeTo(btnTop, popTop, 1, 'numbers are close');
+                //       document.querySelector('#btnUp').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('top carat has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnUp').click();
+                //       var popTop = document.querySelector('#testPopoverUp #popoverWrapper').getBoundingClientRect().bottom - document.querySelector('#testPopoverUp #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       var carat = document.querySelector('#testPopoverUp #popoverWrapper #carat').getBoundingClientRect().top +  document.querySelector('#testPopoverUp #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       assert.closeTo(carat, popTop, 1, 'numbers are close');
+                //       document.querySelector('#btnUp').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('top carat has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnUp').click();
+                //       var popTop = document.querySelector('#testPopoverUp #popoverWrapper').getBoundingClientRect().left + document.querySelector('#testPopoverUp #popoverWrapper').getBoundingClientRect().width/2;
+                //       var carat = document.querySelector('#testPopoverUp #popoverWrapper #carat').getBoundingClientRect().left + document.querySelector('#testPopoverUp #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       assert.closeTo(carat, popTop, 1, 'numbers are close');
+                //       document.querySelector('#btnUp').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('bottom popover has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnDown').click();
+                //       var margin = 5;
+                //       var popDown = document.querySelector('#testPopoverDown #popoverWrapper').getBoundingClientRect().top;
+                //       var btnDown = document.querySelector('#btnDown').getBoundingClientRect().bottom + margin;
+                //       assert.closeTo(btnDown, popDown, 1, 'numbers are close');
+                //       document.querySelector('#btnDown').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('bottom popover has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnDown').click();
+                //       var popDown = document.querySelector('#testPopoverDown #popoverWrapper').getBoundingClientRect().left + document.querySelector('#testPopoverDown #popoverWrapper').getBoundingClientRect().width/2;
+                //       var btnDown = document.querySelector('#btnDown').getBoundingClientRect().left + document.querySelector('#btnDown').getBoundingClientRect().width/2;
+                //       assert.closeTo(btnDown, popDown, 1, 'numbers are close');
+                //       document.querySelector('#btnDown').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('bottom carat has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnDown').click();
+                //       var popDown = document.querySelector('#testPopoverDown #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverDown #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       var carat = document.querySelector('#testPopoverDown #popoverWrapper #carat').getBoundingClientRect().bottom -  document.querySelector('#testPopoverDown #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       assert.closeTo(carat, popDown, 1, 'numbers are close');
+                //       document.querySelector('#btnDown').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('bottom carat has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnDown').click();
+                //       var popDown = document.querySelector('#testPopoverDown #popoverWrapper').getBoundingClientRect().left + document.querySelector('#testPopoverDown #popoverWrapper').getBoundingClientRect().width/2;
+                //       var carat = document.querySelector('#testPopoverDown #popoverWrapper #carat').getBoundingClientRect().left + document.querySelector('#testPopoverDown #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       assert.closeTo(carat, popDown, 1, 'numbers are close');
+                //       document.querySelector('#btnDown').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('left popover has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnLeft').click();
+                //       var popLeft = document.querySelector('#testPopoverLeft #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverLeft #popoverWrapper').getBoundingClientRect().height/2;
+                //       var btnLeft = document.querySelector('#btnLeft').getBoundingClientRect().top + document.querySelector('#btnLeft').getBoundingClientRect().height/2;
+                //       assert.closeTo(btnLeft, popLeft, 1, 'numbers are close');
+                //       document.querySelector('#btnLeft').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('left popover has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnLeft').click();
+                //       var margin = 5;
+                //       var popLeft = document.querySelector('#testPopoverLeft #popoverWrapper').getBoundingClientRect().right + margin;
+                //       var btnLeft = document.querySelector('#btnLeft').getBoundingClientRect().left;
+                //       assert.closeTo(btnLeft, popLeft, 1, 'numbers are close');
+                //       document.querySelector('#btnLeft').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('left carat has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnLeft').click();
+                //       var popLeft = document.querySelector('#testPopoverLeft #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverLeft #popoverWrapper').getBoundingClientRect().height/2;
+                //       var carat = document.querySelector('#testPopoverLeft #popoverWrapper #carat').getBoundingClientRect().top +  document.querySelector('#testPopoverLeft #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       assert.closeTo(carat, popLeft, 1, 'numbers are close');
+                //       document.querySelector('#btnLeft').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('left carat has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnLeft').click();
+                //       var popLeft = document.querySelector('#testPopoverLeft #popoverWrapper').getBoundingClientRect().right - document.querySelector('#testPopoverLeft #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       var carat = document.querySelector('#testPopoverLeft #popoverWrapper #carat').getBoundingClientRect().left + document.querySelector('#testPopoverLeft #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       assert.closeTo(carat, popLeft, 1, 'numbers are close');
+                //       document.querySelector('#btnLeft').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('right popover has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnRight').click();
+                //       var popRight = document.querySelector('#testPopoverRight #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverRight #popoverWrapper').getBoundingClientRect().height/2;
+                //       var btnRight = document.querySelector('#btnRight').getBoundingClientRect().top + document.querySelector('#btnRight').getBoundingClientRect().height/2;
+                //       assert.closeTo(btnRight, popRight, 1, 'numbers are close');
+                //       document.querySelector('#btnRight').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('right popover has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnRight').click();
+                //       var margin = 5;
+                //       var popRight = document.querySelector('#testPopoverRight #popoverWrapper').getBoundingClientRect().left - margin;
+                //       var btnRight = document.querySelector('#btnRight').getBoundingClientRect().right;
+                //       assert.closeTo(btnRight, popRight, 1, 'numbers are close');
+                //       document.querySelector('#btnRight').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('right carat has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnRight').click();
+                //       var popRight = document.querySelector('#testPopoverRight #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverRight #popoverWrapper').getBoundingClientRect().height/2;
+                //       var carat = document.querySelector('#testPopoverRight #popoverWrapper #carat').getBoundingClientRect().top +  document.querySelector('#testPopoverRight #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       assert.closeTo(carat, popRight, 1, 'numbers are close');
+                //       document.querySelector('#btnRight').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('right carat has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnRight').click();
+                //       var popRight = document.querySelector('#testPopoverRight #popoverWrapper').getBoundingClientRect().left - document.querySelector('#testPopoverRight #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       var carat = document.querySelector('#testPopoverRight #popoverWrapper #carat').getBoundingClientRect().left - document.querySelector('#testPopoverRight #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       assert.closeTo(carat, popRight, 1, 'numbers are close');
+                //       document.querySelector('#btnRight').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative top popover has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnUpRel').click();
+                //       var margin = 5;
+                //       var popTop = document.querySelector('#testPopoverUpRel #popoverWrapper').getBoundingClientRect().bottom;
+                //       var btnTop = document.querySelector('#btnUpRel').getBoundingClientRect().top - margin;
+                //       assert.closeTo(btnTop, popTop, 1, 'numbers are close');
+                //       document.querySelector('#btnUpRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative top popover has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnUpRel').click();
+                //       var popTop = document.querySelector('#testPopoverUpRel #popoverWrapper').getBoundingClientRect().left + document.querySelector('#testPopoverUpRel #popoverWrapper').getBoundingClientRect().width/2;
+                //       var btnTop = document.querySelector('#btnUpRel').getBoundingClientRect().left + document.querySelector('#btnUpRel').getBoundingClientRect().width/2;
+                //       assert.closeTo(btnTop, popTop, 1, 'numbers are close');
+                //       document.querySelector('#btnUpRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative top carat has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnUpRel').click();
+                //       var popTop = document.querySelector('#testPopoverUpRel #popoverWrapper').getBoundingClientRect().bottom - document.querySelector('#testPopoverUpRel #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       var carat = document.querySelector('#testPopoverUpRel #popoverWrapper #carat').getBoundingClientRect().top +  document.querySelector('#testPopoverUpRel #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       assert.closeTo(carat, popTop, 1, 'numbers are close');
+                //       document.querySelector('#btnUpRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative top carat has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnUpRel').click();
+                //       var popTop = document.querySelector('#testPopoverUpRel #popoverWrapper').getBoundingClientRect().left + document.querySelector('#testPopoverUpRel #popoverWrapper').getBoundingClientRect().width/2;
+                //       var carat = document.querySelector('#testPopoverUpRel #popoverWrapper #carat').getBoundingClientRect().left + document.querySelector('#testPopoverUpRel #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       assert.closeTo(carat, popTop, 1, 'numbers are close');
+                //       document.querySelector('#btnUpRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative bottom popover has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnDownRel').click();
+                //       var margin = 5;
+                //       var popDown = document.querySelector('#testPopoverDownRel #popoverWrapper').getBoundingClientRect().top;
+                //       var btnDown = document.querySelector('#btnDownRel').getBoundingClientRect().bottom + margin;
+                //       assert.closeTo(btnDown, popDown, 1, 'numbers are close');
+                //       document.querySelector('#btnDownRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative bottom popover has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnDownRel').click();
+                //       var popDown = document.querySelector('#testPopoverDownRel #popoverWrapper').getBoundingClientRect().left + document.querySelector('#testPopoverDownRel #popoverWrapper').getBoundingClientRect().width/2;
+                //       var btnDown = document.querySelector('#btnDownRel').getBoundingClientRect().left + document.querySelector('#btnDownRel').getBoundingClientRect().width/2;
+                //       assert.closeTo(btnDown, popDown, 1, 'numbers are close');
+                //       document.querySelector('#btnDownRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative bottom carat has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnDownRel').click();
+                //       var popDown = document.querySelector('#testPopoverDownRel #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverDownRel #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       var carat = document.querySelector('#testPopoverDownRel #popoverWrapper #carat').getBoundingClientRect().bottom -  document.querySelector('#testPopoverDownRel #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       assert.closeTo(carat, popDown, 1, 'numbers are close');
+                //       document.querySelector('#btnDownRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative bottom carat has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnDownRel').click();
+                //       var popDown = document.querySelector('#testPopoverDownRel #popoverWrapper').getBoundingClientRect().left + document.querySelector('#testPopoverDownRel #popoverWrapper').getBoundingClientRect().width/2;
+                //       var carat = document.querySelector('#testPopoverDownRel #popoverWrapper #carat').getBoundingClientRect().left + document.querySelector('#testPopoverDownRel #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       assert.closeTo(carat, popDown, 1, 'numbers are close');
+                //       document.querySelector('#btnDownRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative left popover has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnLeftRel').click();
+                //       var popLeft = document.querySelector('#testPopoverLeftRel #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverLeftRel #popoverWrapper').getBoundingClientRect().height/2;
+                //       var btnLeft = document.querySelector('#btnLeftRel').getBoundingClientRect().top + document.querySelector('#btnLeftRel').getBoundingClientRect().height/2;
+                //       assert.closeTo(btnLeft, popLeft, 1, 'numbers are close');
+                //       document.querySelector('#btnLeftRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative left popover has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnLeftRel').click();
+                //       var margin = 5;
+                //       var popLeft = document.querySelector('#testPopoverLeftRel #popoverWrapper').getBoundingClientRect().right + margin;
+                //       var btnLeft = document.querySelector('#btnLeftRel').getBoundingClientRect().left;
+                //       assert.closeTo(btnLeft, popLeft, 1, 'numbers are close');
+                //       document.querySelector('#btnLeftRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative left carat has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnLeftRel').click();
+                //       var popLeft = document.querySelector('#testPopoverLeftRel #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverLeftRel #popoverWrapper').getBoundingClientRect().height/2;
+                //       var carat = document.querySelector('#testPopoverLeftRel #popoverWrapper #carat').getBoundingClientRect().top +  document.querySelector('#testPopoverLeftRel #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       assert.closeTo(carat, popLeft, 1, 'numbers are close');
+                //       document.querySelector('#btnLeftRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative left carat has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnLeftRel').click();
+                //       var popLeft = document.querySelector('#testPopoverLeftRel #popoverWrapper').getBoundingClientRect().right - document.querySelector('#testPopoverLeftRel #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       var carat = document.querySelector('#testPopoverLeftRel #popoverWrapper #carat').getBoundingClientRect().left + document.querySelector('#testPopoverLeftRel #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       assert.closeTo(carat, popLeft, 1, 'numbers are close');
+                //       document.querySelector('#btnLeftRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative right popover has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnRightRel').click();
+                //       var popRight = document.querySelector('#testPopoverRightRel #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverRightRel #popoverWrapper').getBoundingClientRect().height/2;
+                //       var btnRight = document.querySelector('#btnRightRel').getBoundingClientRect().top + document.querySelector('#btnRightRel').getBoundingClientRect().height/2;
+                //       assert.closeTo(btnRight, popRight, 1, 'numbers are close');
+                //       document.querySelector('#btnRightRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative right popover has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnRightRel').click();
+                //       var margin = 5;
+                //       var popRight = document.querySelector('#testPopoverRightRel #popoverWrapper').getBoundingClientRect().left - margin;
+                //       var btnRight = document.querySelector('#btnRightRel').getBoundingClientRect().right;
+                //       assert.closeTo(btnRight, popRight, 1, 'numbers are close');
+                //       document.querySelector('#btnRightRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative right carat has correct vertical position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnRightRel').click();
+                //       var popRight = document.querySelector('#testPopoverRightRel #popoverWrapper').getBoundingClientRect().top + document.querySelector('#testPopoverRightRel #popoverWrapper').getBoundingClientRect().height/2;
+                //       var carat = document.querySelector('#testPopoverRightRel #popoverWrapper #carat').getBoundingClientRect().top +  document.querySelector('#testPopoverRightRel #popoverWrapper #carat').getBoundingClientRect().height/2;
+                //       assert.closeTo(carat, popRight, 1, 'numbers are close');
+                //       document.querySelector('#btnRightRel').click();
+                //       done();
+                //     });
+                // });
+                //
+                // test('relative right carat has correct horizontal position', function(done) {
+                //     flush(function() {
+                //       document.querySelector('#btnRightRel').click();
+                //       var popRight = document.querySelector('#testPopoverRightRel #popoverWrapper').getBoundingClientRect().left - document.querySelector('#testPopoverRightRel #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       var carat = document.querySelector('#testPopoverRightRel #popoverWrapper #carat').getBoundingClientRect().left - document.querySelector('#testPopoverRightRel #popoverWrapper #carat').getBoundingClientRect().width/2;
+                //       assert.closeTo(carat, popRight, 1, 'numbers are close');
+                //       document.querySelector('#btnRightRel').click();
+                //       done();
+                //     });
+                // });
+            });
+      </script>
+    </body>
+</html>

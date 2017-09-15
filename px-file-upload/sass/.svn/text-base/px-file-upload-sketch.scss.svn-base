@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+//
+// Sass for the "sketch" notion of the px-file-upload component
+//
+// @author
+//
+
+/*
+THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PREDIX BRANDING
+Predix branding rules go in px-file-upload-predix.scss, not in this file.
+*/
+
+
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
+
+$inuit-enable-input--tiny: true;
+$inuit-enable-input--small: true;
+$inuit-enable-input--regular: true;
+$inuit-enable-input--large: true;
+$inuit-enable-inline-fields: true;
+$inuit-enable-validation-states: true;
+@import "px-forms-design/_base.forms.scss";
+
+$inuit-enable-table--rows: true;
+$inuit-enable-table--small: true;
+@import "px-tables-design/_base.tables.scss";
+
+$inuit-enable-btn--disabled: true;
+$inuit-enable-btn--secondary: true;
+@import "px-meta-buttons-design/_meta.buttons.scss";
+@import "px-iconography-design/_base.iconography.scss";
+
+
+// Component
+
+#fileTable, #fileTable th, #fileTable td {
+  text-align: left;
+  padding-right: 10px;
+}
+#dropZone {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#dropZone.hover {
+  outline: 2px dashed $grey8;
+  outline-offset: 2px;
+  background-color: rgba(0,0,0,.15);
+}
+#validation {
+  color: $alert-red;
+}
+
+// Trumps
+@import "inuit-clearfix/_trumps.clearfix.scss";
+@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
+@import "px-widths-responsive-design/_trumps.widths-responsive.scss";

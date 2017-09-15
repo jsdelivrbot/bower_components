@@ -1,0 +1,34 @@
+{
+  "name": "px-popover",
+  "version": "2.0.0",
+  "main": [
+    "px-popover.html"
+  ],
+  "ignore": [
+    "*.enc",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    "*.md",
+    "scripts",
+    ".github",
+    "gulpfile.js",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "npm-debug.log",
+    "*.png"
+  ],
+  "dependencies": {
+    "iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^1.0.2",
+    "polymer": "^1.6.0",
+    "px-overlay": "^1.0.0"
+  },
+  "devDependencies": {
+    "px-theme": "^3.0.0",
+    "px-headings-design": "^1.0.0",
+    "px-demo": "^2.0.0",
+    "px-box-sizing-design": "^1.0.0"
+  }
+}

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests
+END
+purged.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/purged.js
+END
+index.js
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/index.js
+END
+runner.js
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/runner.js
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/index.html
+END
+saucelabs.sh
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/intl-messageformat/tests/saucelabs.sh
+END

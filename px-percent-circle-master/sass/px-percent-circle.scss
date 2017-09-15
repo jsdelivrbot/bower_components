@@ -1,0 +1,41 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+
+// Base
+
+// Component
+$px-percent-circle-fill-color       :   var(--px-percent-circle-fill-color, blue);
+$px-percent-circle-background-color :   var(--px-percent-circle-background-color, lightgray);
+$px-percent-circle-text-color       :   var(--px-percent-circle-text-color, black);
+
+:host {
+  display: block;
+  height: auto;
+  width: auto;
+}
+svg circle#background {
+  fill: transparent;
+  stroke: $px-percent-circle-background-color;
+}
+svg path#arc {
+  fill: transparent;
+  stroke: $px-percent-circle-fill-color;
+}
+svg text#text {
+  text-align: center;
+  text-anchor: middle;
+  fill: $px-percent-circle-text-color;
+}
+
+// Trumps

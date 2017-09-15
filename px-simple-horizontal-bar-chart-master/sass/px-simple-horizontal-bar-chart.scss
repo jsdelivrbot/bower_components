@@ -1,0 +1,49 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+//
+// Sass for the Predix notion of the px-simple-horizontal-bar-chart component
+//
+// @author
+//
+
+/*
+THIS FILE SHOULD CONTAIN ONLY RULES SPECIFIC TO PREDIX BRANDING
+common/abstract rules go in px-simple-horizontal-bar-chart-sketch.scss, not in this file.
+*/
+
+// Settings
+@import "px-typography-design/_base.typography.scss";
+
+.bar {
+  shape-rendering: crispEdges;
+}
+.px-simple-horizontal-bar-chart-svg {
+    background: var(--px-simple-horizontal-bar-chart-background-color, white);
+    margin: 0;
+}
+.legend-text {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: var(--px-simple-horizontal-bar-chart-legend-text-color, black);
+    fill: var(--px-simple-horizontal-bar-chart-legend-text-color, black);
+}
+.bar-label {
+    font-family: sans-serif;
+    color: var(--px-simple-horizontal-bar-chart-label-text-color, black);
+    fill: var(--px-simple-horizontal-bar-chart-label-text-color, black);
+    font-size: 15px;
+}
+.bar-chart-left-line {
+    stroke: var(--px-simple-horizontal-bar-chart-axis-color, black);
+}
+.legend-text, .bar-label {
+  font-family: "GE Inspira Sans", sans-serif;
+}

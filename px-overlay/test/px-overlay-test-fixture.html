@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Component Test : Fixture for px-overlay</title>
+
+    <!-- Requires Webcomponents.js polyfill is provided by the page for browsers that don't support html imports -->
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <!-- web-component-tester automatically provides local copy of brower.js below
+         for any URL ending with "/web-component-tester/browser.js"
+         when wct is run from the command line -->
+    <script src="../web-component-tester/browser.js"></script>
+    <link rel="import" href="../px-overlay.html" />
+    <!-- Retain this link for px-theme-styles.html -->
+    <link rel="import" href="../../px-theme/px-theme-styles.html">
+    <style include="px-theme-styles" is="custom-style"></style>
+    <!-- This script link will contain the generated script for basic wct test cases -->
+    <script src="px-overlay-base-tests.js"></script>
+    <!-- This script link will contain the generated script stub for custom, developer-added test cases -->
+    <script src="px-overlay-custom-tests.js"></script>
+    <style is="custom-style">
+      #salmon {
+        --px-overlay-color: salmon;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h3>Web Component Test : Fixture for px-overlay</h3>
+    <px-overlay></px-overlay>
+    <px-overlay id="salmon"></px-overlay>
+  </body>
+</html>

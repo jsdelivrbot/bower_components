@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration
+END
+abs.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/abs.js
+END
+constructor.js
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/constructor.js
+END
+duration.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/duration.js
+END
+prototype.js
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/prototype.js
+END
+bubble.js
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/bubble.js
+END
+add-subtract.js
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/add-subtract.js
+END
+iso-string.js
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/iso-string.js
+END
+get.js
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/get.js
+END
+humanize.js
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/humanize.js
+END
+as.js
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/as.js
+END
+create.js
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/PMMS_30670_SVN/!svn/ver/24/PMMS/pmms/public/bower_components/moment/src/lib/duration/create.js
+END

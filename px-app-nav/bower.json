@@ -1,0 +1,44 @@
+{
+  "name": "px-app-nav",
+  "version": "1.7.6",
+  "main": [
+    "px-app-nav.html"
+  ],
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "Gruntfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test",
+    "OSS_Notice.pdf",
+    "scripts",
+    ".github",
+    "px-app-nav.png"
+  ],
+  "dependencies": {
+    "polymer": "^v1.5.0",
+    "px-theme": "~0.8.0",
+    "web-animations-js": "^2.2.0",
+    "px-tooltip": "^0.7.0",
+    "px-list-bare-design": "^0.2.13",
+    "px-polymer-font-awesome": "^0.1.8"
+  },
+  "devDependencies": {
+    "px-forms-design": "#~0.3.15",
+    "px-tables-design": "#~0.3.12",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3",
+    "px-tabs": "~0.4.0",
+    "px-api-viewer": "~0.0.5",
+    "px-demo-snippet": "^0.4.0",
+    "px-toggle-design": "^0.2.12",
+    "px-headings-design": "^0.2.14",
+    "px-actionable-text-icons-design": "^0.0.3",
+    "px-code-design": "^0.2.11",
+    "px-list-inline-design": "^0.2.11",
+    "px-buttons-design": "^0.4.26",
+    "px-starter-kit-design": "~0.4.0",
+    "px-login": "~0.4.0"
+  }
+}

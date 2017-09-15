@@ -1,0 +1,43 @@
+{
+  "name": "px-file-upload",
+  "version": "0.1.0",
+  "main": [
+    "px-file-upload.html"
+  ],
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "Gruntfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test",
+    "scripts",
+    ".github",
+    "px-file-upload.png",
+    "OSS_Notice.pdf"
+  ],
+  "dependencies": {
+    "polymer": "^1.6.1",
+    "px-theme": "~1.1.2"
+  },
+  "devDependencies": {
+    "px-forms-design": "~0.3.17",
+    "px-meta-buttons-design": "~0.5.5",
+    "px-starter-kit-design": "~0.6.0",
+    "px-tables-design": "~0.3.13",
+    "px-layout-design": "~0.3.13",
+    "px-spacing-design": "~0.3.8",
+    "px-typography-design": "~1.1.1",
+    "px-tabs": "~0.5.2",
+    "px-api-viewer": "^0.1.0",
+    "px-demo-snippet": "^0.6.4",
+    "px-toggle-design": "^0.2.12",
+    "px-headings-design": "^0.2.13",
+    "px-actionable-text-icons-design": "^0.0.3",
+    "px-code-design": "^0.2.11",
+    "px-headings-design": "^0.2.14",
+    "px-list-inline-design": "^0.2.11",
+    "px-polymer-font-awesome": "^0.1.9"
+  }
+}
